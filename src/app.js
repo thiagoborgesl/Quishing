@@ -33,32 +33,25 @@ app.post("/submit", (req, res) => {
     const passwordFilled = password ? "Sim" : "Não";
 
     // Inserir dados no banco de dados
-    db.run(`INSERT INTO users (username, password_filled) VALUES (?, ?)`, [username, passwordFilled], (err) => {
-        if (err) {
-            console.error(err.message);
-            res.status(500).send("Erro ao salvar os dados.");
-        } else {
-            res.redirect("/conscientizacao.html");
-        }
-    });
+    const stmt = db.prepare(`INSERT INTO users (username, password_filled) VALUES (?, ?)`);
+    stmt.run(username, passwordFilled);
+
+    res.redirect("/conscientizacao.html");
 });
 
 // Rota para exportar os dados do banco de dados para CSV
 app.get("/export", (req, res) => {
-    db.all("SELECT * FROM users", (err, rows) => {
-        if (err) {
-            console.error(err.message);
-            res.status(500).send("Erro ao exportar os dados.");
-        } else {
-            let csv = "id,username,password_filled\n";
-            rows.forEach(row => {
-                csv += `${row.id},${row.username},${row.password_filled}\n`;
-            });
-            res.header("Content-Type", "text/csv");
-            res.attachment("usuarios.csv");
-            res.send(csv);
-        }
+    const stmt = db.prepare("SELECT * FROM users");
+    const rows = stmt.all();  // Retorna todas as linhas da consulta
+
+    let csv = "id,username,password_filled\n";
+    rows.forEach(row => {
+        csv += `${row.id},${row.username},${row.password_filled}\n`;
     });
+
+    res.header("Content-Type", "text/csv");
+    res.attachment("usuarios.csv");
+    res.send(csv);
 });
 
 // Iniciar o servidor
