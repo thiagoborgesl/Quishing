@@ -18,13 +18,12 @@ if (!fs.existsSync(pathbanco)) {
   }
 
 // Criar tabela no banco de dados (se não existir)
-db.serialize(() => {
-    db.run(`CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT NOT NULL,
-        password_filled TEXT NOT NULL
-    )`);
-});
+
+db.prepare(`CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    password_filled TEXT NOT NULL
+)`).run();
 
 // Rota para processar o formulário
 app.post("/submit", (req, res) => {
