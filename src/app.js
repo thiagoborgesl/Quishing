@@ -6,15 +6,15 @@ const Database = require('better-sqlite3');
 const app = express();
 const db = new Database('./database/users.db');
 const fs = require('fs');
-const path = './database';
+const pathbanco = './database';
 
 // Configurar o middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../public")));
 
 // Verifica se o diretório existe, e se não, cria
-if (!fs.existsSync(path)) {
-    fs.mkdirSync(path);
+if (!fs.existsSync(pathbanco)) {
+    fs.mkdirSync(pathbanco);
   }
 
 // Criar tabela no banco de dados (se não existir)
