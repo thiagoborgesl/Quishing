@@ -1,10 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const sqlite3 = require("sqlite3").verbose();
+//const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
-
+const Database = require('better-sqlite3');
 const app = express();
-const db = new sqlite3.Database("./database/users.db");
+const db = new Database('./database/users.db');
 
 // Configurar o middleware
 app.use(bodyParser.urlencoded({ extended: true }));
