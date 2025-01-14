@@ -1,0 +1,96 @@
+/* Configuração básica */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    text-align: center;  /* Centraliza todos os elementos no body */
+}
+
+/* Título */
+h1 {
+    font-size: 2.5em;
+    margin: 20px 0;
+}
+
+/* Emoji */
+.emoji {
+    font-size: 4em;
+    margin: 20px 0;
+}
+
+/* Texto abaixo do título */
+p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Campos de input */
+input[type="email"],
+input[type="password"] {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Botão */
+button {
+    width: 80%;
+    max-width: 400px;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Imagem abaixo do botão */
+img {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;  /* Centraliza horizontalmente */
+    margin-right: auto; /* Centraliza horizontalmente */
+}
+
+/* Media query para dispositivos móveis */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    .emoji {
+        font-size: 3em;
+    }
+    p {
+        font-size: 1em;
+    }
+    input[type="email"],
+    input[type="password"] {
+        width: 90%;
+    }
+    button {
+        width: 90%;
+    }
+}
